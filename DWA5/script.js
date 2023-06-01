@@ -13,15 +13,18 @@ const wholePage = document.querySelector('body');
  * @param {number} divider
  */
 const isInputValid = (dividend, divider) => {
-  if (dividend === '' || divider === '') {
-    result.innerText = 'Division not performed. Both values are required in inputs. Try again';
-    return false; // to indicate an invalid input
-  } if (dividend < 0 || divider < 0) {
-    result.innerText = 'Division not performed. Invalid number provided. Try again';
-    throw new Error('Entered a negative number');
-  } else {
-    return { dividend, divider };
+  try {
+    if (dividend === '' || divider === '') {
+      throw new Error('Division not performed. Both values are required in inputs. Try again');
+    }
+    if (dividend < 0 || divider < 0) {
+      throw new Error('Division not performed. Invalid number provided. Try again');
+    }
+  } catch (err) {
+    result.innerText = err.message;
+    return false;
   }
+  return true;
 };
 
 /**
@@ -31,13 +34,16 @@ const isInputValid = (dividend, divider) => {
  * @param {number} resultInteger
  */
 const isNumber = (resultInteger) => {
-  // eslint-disable-next-line no-restricted-globals
-  if (isNaN(resultInteger) || resultInteger < 0) {
-    wholePage.innerText = 'Something critical went wrong. Please reload the page';
-    throw new Error('Characters entered are not numbers');
-  } else {
-    return resultInteger;
+  try {
+    // eslint-disable-next-line no-restricted-globals
+    if (isNaN(resultInteger) || resultInteger < 0) {
+      throw new Error('Something critical went wrong. Please reload the page');
+    }
+  } catch (err) {
+    wholePage.innerText = err;
+    return false;
   }
+  return true;
 };
 
 /**
@@ -50,10 +56,13 @@ const printAnswer = (event) => {
   event.preventDefault();
   const entries = new FormData(event.target);
   const { dividend, divider } = Object.fromEntries(entries);
+
   if (isInputValid(dividend, divider)) {
     const resultInteger = Math.floor(dividend / divider);
-    isNumber(resultInteger);
-    result.innerText = resultInteger;
+
+    if (isNumber(resultInteger)) {
+      result.innerText = resultInteger;
+    }
   }
 };
 
