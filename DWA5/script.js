@@ -12,6 +12,7 @@ const wholePage = document.querySelector('body');
  *
  * @param {string} dividend
  * @param {string} divider
+ * @returns {boolean}
  */
 const isInputValid = (dividend, divider) => {
   try {
@@ -34,6 +35,7 @@ const isInputValid = (dividend, divider) => {
  * an error. NaN can only exist if non-number characters are entered in the input.
  *
  * @param {number} resultInteger
+ * @returns {boolean}
  */
 const isNumber = (resultInteger) => {
   try {
