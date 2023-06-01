@@ -33,7 +33,7 @@ const isInputValid = (dividend, divider) => {
  * This checks whether the result of the division is a positive number, if it is NaN, it will throw
  * an error. NaN can only exist if non-number characters are entered in the input.
  *
- * @param {string} resultInteger
+ * @param {number} resultInteger
  */
 const isNumber = (resultInteger) => {
   try {
