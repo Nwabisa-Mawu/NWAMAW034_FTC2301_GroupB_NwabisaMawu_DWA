@@ -13,7 +13,6 @@ import {
       changeTheme
   } from './functions.js'
   
-  
   /*-----------------------------------------------GLOBAL VARIABLES---------------------------------------------- */
   
   /**
@@ -36,7 +35,7 @@ import {
    */
   export const data = {
       'home': {
-          bookCards: document.querySelectorAll('preview'),
+          bookCards: document.querySelectorAll('.preview'),
           main: document.querySelector('[data-list-items]'),
           'SHOW_MORE_BTN': document.querySelector('[data-list-button]'),
           root: document.documentElement,

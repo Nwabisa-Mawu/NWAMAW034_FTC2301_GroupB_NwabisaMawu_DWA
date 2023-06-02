@@ -11,7 +11,7 @@ import { SHOW_MORE_BTN, lightToggleDialog, data, FRAGMENT } from "./scripts.js";
 /**
  * This function updates the number of books left and then prints
  * that number on the button used to show more books.
- * @returns { number } the number of books left that haven't been
+ * @returns {Number} the number of books left that haven't been
  * loaded to the page
  */
 export const updateBooksLeft = () => {
@@ -40,68 +40,77 @@ export const appendBooks = (books) => {
     for (let i = 0; i < BOOKS_PER_PAGE; i++) {
         //get the books from index 0 in the books object
         const book = books[i];
-
-        /*create a button element for the books so each book is 
-        in its own card*/
-        const button = document.createElement('button');
-
-          //create a class and call it preview
-          button.classList.add('preview');
-
-               // Set the button's data-preview attribute to the book's id.
-           button.dataset.preview = book.id;
-
-      // Set the button's inner HTML to the book's title and author.
-      button.innerHTML =/* HTML markup for the book cards */
-      `
-       <img class="preview__image" src="${book.image}" />
-       <div class="preview__info">
-         <h3 class="preview__title">${book.title}</h3>
-         <div class="preview__author">${authors[book.author]}</div>
-       </div>
-     `;
-     
-    // Append the button to the FRAGMENT.
-    FRAGMENT.appendChild(button);
+		createBookButtons(book)
 }
-
      // Append the fragment to the data-list-items div.
      data.home.main.appendChild(FRAGMENT);
 
 data.home.SHOW_MORE_BTN.innerHTML = `Show more <span class = "list__remaining">(${updateBooksLeft() - BOOKS_PER_PAGE})</span>`
     }
 
+/**
+ * @typedef {object} Div
+ */
+
+/**
+ * This creates the button element then loads the book information
+ * before displaying it on the html page.
+ * 
+ * @param {object} book 
+ * @returns {Div} FRAGMENT
+ */
+const createBookButtons = (book) => {
+	/*create a button element for the books so each book is 
+    in its own card*/
+    const button = document.createElement('button');
+	//create a class and call it preview
+	button.classList.add('preview');
+	// Set the button's data-preview attribute to the book's id.
+	button.dataset.preview = book.id;
+	// Set the button's inner HTML to the book's title and author.
+	button.innerHTML =/* HTML markup for the book cards */
+	`
+	 <img class="preview__image" src="${book.image}" />
+	 <div class="preview__info">
+	   <h3 class="preview__title">${book.title}</h3>
+	   <div class="preview__author">${authors[book.author]}</div>
+	 </div>
+   `;
+   // Append the button to the FRAGMENT.
+   FRAGMENT.appendChild(button);
+   return FRAGMENT
+}
+
+
 
     /**
      * This function will add more books to the page and update
      * the number in the show more button everytime it is clicked 
      * until there are no more books left in the books object.
+	 * 
+	 * @param {'click'} event
      */
 export const showMoreAction = (event) => { 
         event.preventDefault()
-            /* fetch the books that are already on the page then count them and
-        use the number of books left in the books object to add more books so the button
-        can stop adding more books when all the books in the object have been added*/
         const booksOnPage = document.querySelectorAll('.preview');
         const booksOnPageCount = booksOnPage.length;
-        //subtract books on page from total books in object
         const booksLeft = books.length - booksOnPageCount;
-        //add the text to the button element
-        
-        //check if there are still books left in the books object
-        if(booksLeft > 0) {
-            /*add 36 more books to the page using the appendBooks function
-            where the books object is altered by slicing out books
-            from where the first function call ended to 36 more books*/
+
+        if(booksLeft > 36) {
+
             appendBooks(books.slice(booksOnPageCount, booksOnPageCount + 36))
-        }   
             data.home.SHOW_MORE_BTN.innerHTML = `Show more <span class="list__remaining">(${booksLeft - BOOKS_PER_PAGE})</span>`
+
+        }   else if (booksLeft < 36) {
+          for (let i = 0; i < booksLeft; i++) {
+            const book = books[i];
+			createBookButtons(book)
+    }
+         data.home.main.appendChild(FRAGMENT);
+         data.home.SHOW_MORE_BTN.innerHTML = `Show more <span class="list__remaining">(0)</span>`
+         SHOW_MORE_BTN.disabled = true;
+        }
     
-            /* make the summary overlay show when a book is clicked
-     Used a for loop to iterate over all the book buttons so that
-     each one can be clicked on
-     NOTE - added here too so it can still work after the first 
-     36 books are added*/
      const bookList = document.querySelectorAll('.preview')
      for (let z = booksOnPageCount; z < books.length; z++ ) {
         bookList[z].addEventListener("click", descriptionOverlay )
