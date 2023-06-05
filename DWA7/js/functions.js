@@ -305,16 +305,6 @@ lightToggleDialog.innerHTML = /* html */
                             </div>
                             </div>`;
 
-const day = {
-  dark: '10, 10, 20',
-  light: '255, 255, 255',
-};
-
-const night = {
-  dark: '255, 255, 255',
-  light: '10, 10, 20',
-};
-
 /**
  * This handler will switch the theme of the webpage when clicked.
  * It fetch the value attribute of each of the options and check whether they were
@@ -323,6 +313,15 @@ const night = {
  */
 export const changeTheme = (event) => {
   event.preventDefault();
+
+  const day = {
+    dark: '10, 10, 20',
+    light: '255, 255, 255',
+  };
+  const night = {
+    dark: '255, 255, 255',
+    light: '10, 10, 20',
+  };
   const themeOption = document.querySelector('[data-settings-theme]').querySelectorAll('option');
   // first find the selected theme
   let selectedTheme = null;
