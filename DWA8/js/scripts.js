@@ -6,13 +6,11 @@ import { books } from './data.js';
 import {
   appendBooks,
   showMoreAction,
-  descriptionOverlay,
   searchBooks,
   changeTheme,
   handleSearchOverlay,
   searchDialog,
   lightToggleDialog,
-  getHtmlArray,
   data,
   ROOT,
   SHOW_MORE_BTN,
@@ -52,13 +50,6 @@ LOGO.addEventListener('click', (event) => {
   // call this function to load the page again
   appendBooks(books);
 });
-
-/* make the summary overlay show when a book is clicked */
-const bookList = getHtmlArray('.preview');
-// eslint-disable-next-line no-restricted-syntax
-for (const singleBook of bookList) {
-  singleBook.addEventListener('click', descriptionOverlay);
-}
 
 /* ----------------------------------------------SEARCH------------------------------------------ */
 

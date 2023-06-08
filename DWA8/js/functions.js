@@ -65,6 +65,42 @@ export const {
 } = data;
 const FRAGMENT = document.createDocumentFragment();
 
+/* ----------------------------------------BOOK SUMMARY OVERLAY---------------------------------- */
+
+/**
+ * This handler shows the book description overlay when the book is clicked on
+ * @param event
+ */
+export const descriptionOverlay = (event) => {
+  event.preventDefault();
+  const book = event.target.closest('.preview');
+  const bookId = book.getAttribute('data-preview');
+
+  books.forEach((book) => {
+    if (book.id === bookId) {
+      BOOK_SUMMARY.innerHTML = /* html */
+        `<div class="overlay__preview">
+        <img class="overlay__blur" data-list-blur="" src="${book.image}">
+        <img class="overlay__image" data-list-image="" src="${book.image}">
+        </div>
+        <div class="overlay__content">
+        <h3 class="overlay__title" data-list-title="">${book.title} (${new Date(book.published).getFullYear()})</h3>
+        <div class="overlay__data" data-list-subtitle="">${authors[book.author]}</div>
+        <p class="overlay__data overlay__data_secondary" data-list-description="">${book.description}</p>
+        </div>
+        <div class="overlay__row">
+        <button class="overlay__button overlay__button_primary" data-list-close="">Close</button>
+        </div>`;
+    }
+  });
+
+  BOOK_SUMMARY.showModal();
+
+  getHtml('[data-list-close]').addEventListener('click', () => {
+    BOOK_SUMMARY.close();
+  });
+};
+
 /* -----------------------------------------------DISPLAY---------------------------------------- */
 /**
  * @typedef {object} Div
@@ -125,6 +161,12 @@ export const appendBooks = (books) => {
   HOME_PAGE.appendChild(FRAGMENT);
   SHOW_MORE_BTN.disabled = false;
   SHOW_MORE_BTN.innerHTML = `Show more <span class = "list__remaining">(${updateBooksLeft().booksLeft})</span>`;
+  /* make the summary overlay show when a book is clicked */
+  const bookList = getHtmlArray('.preview');
+  // eslint-disable-next-line no-restricted-syntax
+  for (const singleBook of bookList) {
+    singleBook.addEventListener('click', descriptionOverlay);
+  }
 };
 
 /**
@@ -152,42 +194,6 @@ export const showMoreAction = (event) => {
   booksOnPage.forEach((book) => {
     // eslint-disable-next-line no-use-before-define
     book.addEventListener('click', descriptionOverlay);
-  });
-};
-
-/* ----------------------------------------BOOK SUMMARY OVERLAY---------------------------------- */
-
-/**
- * This handler shows the book description overlay when the book is clicked on
- * @param event
- */
-export const descriptionOverlay = (event) => {
-  event.preventDefault();
-  const book = event.target.closest('.preview');
-  const bookId = book.getAttribute('data-preview');
-
-  books.forEach((book) => {
-    if (book.id === bookId) {
-      BOOK_SUMMARY.innerHTML = /* html */
-        `<div class="overlay__preview">
-        <img class="overlay__blur" data-list-blur="" src="${book.image}">
-        <img class="overlay__image" data-list-image="" src="${book.image}">
-        </div>
-        <div class="overlay__content">
-        <h3 class="overlay__title" data-list-title="">${book.title} (${new Date(book.published).getFullYear()})</h3>
-        <div class="overlay__data" data-list-subtitle="">${authors[book.author]}</div>
-        <p class="overlay__data overlay__data_secondary" data-list-description="">${book.description}</p>
-        </div>
-        <div class="overlay__row">
-        <button class="overlay__button overlay__button_primary" data-list-close="">Close</button>
-        </div>`;
-    }
-  });
-
-  BOOK_SUMMARY.showModal();
-
-  getHtml('[data-list-close]').addEventListener('click', () => {
-    BOOK_SUMMARY.close();
   });
 };
 
@@ -275,7 +281,6 @@ export const searchBooks = (event) => {
     filteredBooks = filteredBooks.filter((book) => book.title.toLowerCase().includes(searchText));
   }
   const booksFound = filteredBooks.length > 0;
-  // if there are no books found then should print message
   if ((!booksFound) || ((!searchText) && (selectedAuthor === 'All Authors') && (selectedGenre === 'All Genres'))) {
     HOME_PAGE.innerHTML = '';
     HOME_PAGE.innerHTML = `<div class = "list__message list__message_show" data-list-message = "">
@@ -286,12 +291,9 @@ export const searchBooks = (event) => {
     SHOW_MORE_BTN.disabled = true;
     return filteredBooks;
   }
-  // Clear the book list on the homepage
   HOME_PAGE.innerHTML = '';
-  // Append the filtered books to the book list
   appendBooks(filteredBooks);
   HOME_PAGE.appendChild(FRAGMENT);
-  // disable the show more button for the results page
   SHOW_MORE_BTN.disabled = true;
   // the search results summary overlay
   const searchResultList = HOME_PAGE.querySelectorAll('button');
