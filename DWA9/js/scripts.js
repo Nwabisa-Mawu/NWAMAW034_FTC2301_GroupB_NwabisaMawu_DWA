@@ -4,17 +4,12 @@
 import { books } from './data.js';
 
 import {
-  appendBooks,
-  showMoreAction,
   searchBooks,
   changeTheme,
   handleSearchOverlay,
   searchDialog,
   lightToggleDialog,
   data,
-  ROOT,
-  SHOW_MORE_BTN,
-  HOME_PAGE,
 } from './functions.js';
 
 /* ---------------------------------------GLOBAL VARIABLES--------------------------------------- */
@@ -35,21 +30,21 @@ const CANCEL_CHANGE_BTN = lightToggleDialog.querySelectorAll('button')[0];
 
 /* calling the function to load the page with book list using an event
 listener for when the page first loads  */
-ROOT.addEventListener('load', appendBooks(books));
+// ROOT.addEventListener('load', appendBooks(books));
 
 /* use event listener to make button load more books with the
 showMoreAction function */
-SHOW_MORE_BTN.addEventListener('click', showMoreAction);
+// SHOW_MORE_BTN.addEventListener('click', showMoreAction);
 
 /* this event listener return to home button when you click on the book connect
 text and logo */
-LOGO.addEventListener('click', (event) => {
-  event.preventDefault();
-  // Clear the book list on the homepage
-  HOME_PAGE.innerHTML = '';
-  // call this function to load the page again
-  appendBooks(books);
-});
+// LOGO.addEventListener('click', (event) => {
+//   event.preventDefault();
+//   // Clear the book list on the homepage
+//   HOME_PAGE.innerHTML = '';
+//   // call this function to load the page again
+//   appendBooks(books);
+// });
 
 /* ----------------------------------------------SEARCH------------------------------------------ */
 
