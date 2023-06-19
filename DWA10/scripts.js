@@ -66,6 +66,8 @@ const resetHandler = () => {
     add.disabled = false;
     subtract.disabled = false;
     number.value = 0;
+    window.alert('The counter has been reset');
+    
 }
 
 subtract.addEventListener('click', subtractHandler);
