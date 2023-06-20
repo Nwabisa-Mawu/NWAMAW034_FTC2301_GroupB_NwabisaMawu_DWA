@@ -24,36 +24,36 @@ const reset = document.querySelector('[data-key = "reset"]');
 // to assign an action use ()=>
 
 const subtractHandler = () => {
-        
-        // we want the number on the screen to change by this value
-        const newValue = parseInt(number.value)- 1;
-        number.value = newValue;
-//  to create a min value
-    //if (newValue === MIN_NUMBER){
-      //  subtract.disabled = true;
-    //} 
-     //Will give the same behaviour as below
 
-     if (number.disabled === true){
-        add.disabled = false;
-     }
-     if (newValue <= MIN_NUMBER) {
-        subtract.disabled = true 
-        add.disabled = false;
-     }
+        // we want the number on the screen to change by this value
+        const newValue = parseInt(number.value) - 1;
+        number.value = newValue;
+        //  to create a min value
+        //if (newValue === MIN_NUMBER){
+        //  subtract.disabled = true;
+        //} 
+        //Will give the same behaviour as below
+
+        if (number.disabled === true) {
+                add.disabled = false;
+        }
+        if (newValue <= MIN_NUMBER) {
+                subtract.disabled = true
+                add.disabled = false;
+        }
 }
 
 const addHandler = () => {
         // we want the number on the screen to change by this value
         const newValue = parseInt(number.value) + 1;
         number.value = newValue
-// to create a new max value
-    //    if (newValue === MAX_NUMBER){
-      //          add.disabled = true;
+        // to create a new max value
+        //    if (newValue === MAX_NUMBER){
+        //          add.disabled = true;
         //}
         //Did not work because both end up disabled if you reach max/min 
-  
-        if (number.value <= MIN_NUMBER){
+
+        if (number.value <= MIN_NUMBER) {
                 add.disabled = false;
         }
         if (newValue >= MAX_NUMBER) {
@@ -63,11 +63,17 @@ const addHandler = () => {
 }
 
 const resetHandler = () => {
-    add.disabled = false;
-    subtract.disabled = false;
-    number.value = 0;
-    window.alert('The counter has been reset');
-    
+        const resetMsg = document.getElementById('reset-message');
+        resetMsg.hidden = false;
+
+        setTimeout(() => {
+                resetMsg.hidden = true;
+        }, 1000);
+        add.disabled = false;
+        subtract.disabled = false;
+        number.value = 0;
+
+
 }
 
 subtract.addEventListener('click', subtractHandler);
