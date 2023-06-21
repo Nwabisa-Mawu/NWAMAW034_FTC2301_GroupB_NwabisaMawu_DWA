@@ -25,40 +25,40 @@ const reset = document.querySelector('[data-key = "reset"]');
 // to assign an action use ()=>
 
 const subtractHandler = () => {
-        myStore.publish({ type: 'MINUS'});
+        myStore.publish({ type: 'MINUS' });
         console.log(myStore.getState());
-        
-        // we want the number on the screen to change by this value
-        const newValue = parseInt(number.value)- 1;
-        number.value = newValue;
-//  to create a min value
-    //if (newValue === MIN_NUMBER){
-      //  subtract.disabled = true;
-    //} 
-     //Will give the same behaviour as below
 
-     if (number.disabled === true){
-        add.disabled = false;
-     }
-     if (newValue <= MIN_NUMBER) {
-        subtract.disabled = true 
-        add.disabled = false;
-     }
+        // we want the number on the screen to change by this value
+        const newValue = parseInt(number.value) - 1;
+        number.value = newValue;
+        //  to create a min value
+        //if (newValue === MIN_NUMBER){
+        //  subtract.disabled = true;
+        //} 
+        //Will give the same behaviour as below
+
+        if (number.disabled === true) {
+                add.disabled = false;
+        }
+        if (newValue <= MIN_NUMBER) {
+                subtract.disabled = true
+                add.disabled = false;
+        }
 }
 
 const addHandler = () => {
-        myStore.publish({ type: 'ADD'});
+        myStore.publish({ type: 'ADD' });
         console.log(myStore.getState());
         // we want the number on the screen to change by this value
         const newValue = parseInt(number.value) + 1;
         number.value = newValue
-// to create a new max value
-    //    if (newValue === MAX_NUMBER){
-      //          add.disabled = true;
+        // to create a new max value
+        //    if (newValue === MAX_NUMBER){
+        //          add.disabled = true;
         //}
         //Did not work because both end up disabled if you reach max/min 
-  
-        if (number.value <= MIN_NUMBER){
+
+        if (number.value <= MIN_NUMBER) {
                 add.disabled = false;
         }
         if (newValue >= MAX_NUMBER) {
@@ -67,19 +67,19 @@ const addHandler = () => {
         }
 }
 
-const resetHandler = () => { 
-        myStore.publish({ type: 'RESET'});
+const resetHandler = () => {
+        myStore.publish({ type: 'RESET' });
         console.log(myStore.getState());
-    const resetMsg = document.getElementById('reset-message');
-    resetMsg.hidden = false;
-//make message disappear after a second.
-    setTimeout(() => {
-        resetMsg.hidden = true;
-      }, 1250);
+        const resetMsg = document.getElementById('reset-message');
+        resetMsg.hidden = false;
+        //make message disappear after a second.
+        setTimeout(() => {
+                resetMsg.hidden = true;
+        }, 1250);
 
-    add.disabled = false;
-    subtract.disabled = false;
-    number.value = 0;
+        add.disabled = false;
+        subtract.disabled = false;
+        number.value = 0;
 };
 
 subtract.addEventListener('click', subtractHandler);
@@ -114,7 +114,10 @@ const store = (reducer) => {
         const publish = (action) => {
                 state = reducer(state, action);
                 handlers.unshift(state);
+                //store the actions in memory array
+                console.log(handlers);
         };
+
         //to get the state after an event is registered
         const getState = () => fetchState();
 
@@ -133,7 +136,7 @@ const store = (reducer) => {
  * @returns 
  */
 const reducer = (state = 0, action) => {
-        switch(action.type) {
+        switch (action.type) {
                 case 'ADD':
                         return state + 1;
                 case 'MINUS':
