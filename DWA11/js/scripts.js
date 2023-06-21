@@ -1,7 +1,8 @@
 /* eslint-disable */
+
 // GLOBAL CONSTANTS
-const MAX_NUMBER = 10;
-const MIN_NUMBER = -10;
+const MAX_NUMBER = 100;
+const MIN_NUMBER = -100;
 
 // store three things in our js storage
 // to select the three html elements we want to use and store
@@ -24,6 +25,8 @@ const reset = document.querySelector('[data-key = "reset"]');
 // to assign an action use ()=>
 
 const subtractHandler = () => {
+        myStore.publish({ type: 'MINUS'});
+        console.log(myStore.getState());
         
         // we want the number on the screen to change by this value
         const newValue = parseInt(number.value)- 1;
@@ -44,6 +47,8 @@ const subtractHandler = () => {
 }
 
 const addHandler = () => {
+        myStore.publish({ type: 'ADD'});
+        console.log(myStore.getState());
         // we want the number on the screen to change by this value
         const newValue = parseInt(number.value) + 1;
         number.value = newValue
@@ -63,38 +68,58 @@ const addHandler = () => {
 }
 
 const resetHandler = () => { 
+        myStore.publish({ type: 'RESET'});
+        console.log(myStore.getState());
     const resetMsg = document.getElementById('reset-message');
     resetMsg.hidden = false;
-
+//make message disappear after a second.
     setTimeout(() => {
         resetMsg.hidden = true;
-      }, 1000);
-      
+      }, 1250);
+
     add.disabled = false;
     subtract.disabled = false;
     number.value = 0;
 };
 
+subtract.addEventListener('click', subtractHandler);
+add.addEventListener('click', addHandler); //tells it to run addHandler
+//instructions after add has been clicked
+//NOTE-create event response before declaration otherwise console
+//will not read if it is called before it is declared
+reset.addEventListener('click', resetHandler);
+
+/* STATE MANAGEMENT CODE - Added to the end of the code so that it updates the
+code after the events have been registered. */
+
 /**
  * 
  * @param {Function} reducer 
- * @returns {Function} getState - will return the current state.
- * @returns {Function} publish - will return the function that will pass
+ * @returns {object<function>} getState will return the current state.
+ * and publish which will return the function that will pass
  * the action through the reducer function.
  */
 const store = (reducer) => {
         let state;
         let handlers = [];
-
+        //to get the current state of the app
         const fetchState = () => state;
-
-        const publish = (state, action) => {
-                const changeState = reducer(action);
-                handlers.unshift(action);
+        /**
+         * This is the dispatch function that accepts
+         * the event name an passes it to the reducer function
+         * so that it can check for a match then update the state
+         * and add it to the handlers array for memory.
+         * @param {event} action 
+         */
+        const publish = (action) => {
+                state = reducer(state, action);
+                handlers.unshift(state);
         };
+        //to get the state after an event is registered
+        const getState = () => fetchState();
 
         return {
-                fetchState,
+                getState,
                 publish
         };
 };
@@ -120,10 +145,4 @@ const reducer = (state = 0, action) => {
         }
 };
 
-subtract.addEventListener('click', subtractHandler);
-add.addEventListener('click', addHandler); //tells it to run addHandler
-//instructions after add has been clicked
-//NOTE-create event response before declaration otherwise console
-//will not read if it is called before it is declared
-reset.addEventListener('click', resetHandler);
-
+const myStore = store(reducer);
