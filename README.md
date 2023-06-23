@@ -20,6 +20,7 @@ DWA1 - DWA14 is part one of the course which focuses on structuring Javascript c
 - **DWA11:** Functional Programming (FP)
 - **DWA12:** Declarative abstractions
 - **DWA13:** Higher order Functions
+- **DWA14:** State machines
 
 
 
