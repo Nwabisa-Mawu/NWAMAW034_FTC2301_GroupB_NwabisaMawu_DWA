@@ -29,8 +29,15 @@ customElements.define('tally-header', Header);
 
  /* BUTTONS CUSTOM ELEMENT */
  class PlusButton extends LitElement {
+    //add a properties object and add the disabled as
+    //a property of this element.
+    static properties = {
+        disabled: { type: Boolean}
+    };
+
     constructor() {
         super();
+        this.disabled = false;
     }
 
     render() {
@@ -43,7 +50,7 @@ customElements.define('tally-header', Header);
             height: 3rem;
         }
         </style>
-        <button>+</button>
+        <button ?disabled=${this.disabled}>+</button>
         `;
     }
  }
@@ -52,8 +59,15 @@ customElements.define('tally-header', Header);
 
   /* BUTTONS CUSTOM ELEMENT */
   class MinusButton extends LitElement {
+    //add a properties object and add the disabled as
+    //a property of this element.
+    static properties = {
+        disabled: { type: Boolean}
+    };
+
     constructor() {
         super();
+        this.disabled = false;
     }
 
     render() {
@@ -66,7 +80,7 @@ customElements.define('tally-header', Header);
             height: 3rem;
         }
         </style>
-        <button>-</button>
+        <button ?disabled=${this.disabled}>-</button>
         `;
     }
  }
