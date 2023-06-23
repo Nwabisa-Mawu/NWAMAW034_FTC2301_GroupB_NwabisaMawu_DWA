@@ -12,11 +12,6 @@ code after the events have been registered. */
  */
 const store = (reducer) => {
     let state;
-    /**
-     * Array that stores the state history - will be emptied 
-     * when the page is refreshed.
-     */
-    let handlers = [];
     //to get the current state of the app
     const fetchState = () => state;
     /**
@@ -28,9 +23,6 @@ const store = (reducer) => {
      */
     const publish = (action) => {
         state = reducer(state, action);
-        handlers.unshift(state);
-        //store the actions in memory array
-        console.log(handlers);
     };
 
     //to get the state after an event is registered
