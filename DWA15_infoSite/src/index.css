@@ -1,0 +1,73 @@
+:root {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: azure;
+}
+
+.header {
+  background: rgba(33,34,42,0.9);
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.logo-text {
+  color: #00CCFF;
+}
+
+.logo {
+  width: 4rem;
+  height: 4rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.main {
+  padding: 2rem;
+  background-color: #282d35;
+  left: 0;
+  position: fixed;
+  top: 4.5rem;
+  width: 100%;
+  height: 85vh;
+  padding: 57px 27px;
+  color: white;
+  background-image: url(./assets/Group-logo.svg);
+  background-repeat: repeat-y;
+  background-position: right 35%;
+}
+
+.main > h1 {
+  padding-left: 5rem;
+  letter-spacing: 0.2rem;
+  line-height: normal;
+}
+
+.main > div > ul > li::marker {
+  font-size: 1.8rem;
+  color: #00CCFF;
+  line-height: 4rem;
+}
+
+.footer {
+  color: azure;
+  text-align: center;
+  padding: 0.5rem 0rem 0.6rem 1rem;
+  position: fixed;
+  top: 35rem;
+  width: 100%;
+}
+
+
