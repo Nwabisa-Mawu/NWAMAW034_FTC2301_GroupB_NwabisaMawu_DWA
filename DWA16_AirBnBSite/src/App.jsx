@@ -30,8 +30,8 @@ function Hero() {
     <section className='hero'>
       <img src={hero} className='hero-image' alt='hero-image' />
       <div className='hero-text'>
-      <h1>Online experiences</h1>
-      <p>Join unique interactive activities led by one-of-a-kind hosts—all without leaving home.</p>
+        <h1>Online experiences</h1>
+        <p>Join unique interactive activities led by one-of-a-kind hosts—all without leaving home.</p>
       </div>
     </section>
   )
@@ -40,36 +40,42 @@ function Hero() {
 function Cards() {
   return (
     <section className='rating-cards'>
-    <div className='card'>
-      <img src={athlete} alt='image' />
-      <div className='rating'>
-        <img src={star} alt='rating-star' />
-        <p>5.0</p>
-        <p>(6) <img src={ellipse} alt='ellipse' /> USA</p>
+      <div className='card'>
+        <img src={athlete} alt='image' />
+        <div className='rating'>
+          <img src={star} alt='rating-star' />
+          <p>5.0</p>
+          <div className='rating-text'>
+          <p>(6)<img src={ellipse} alt='ellipse' />USA</p>
+          </div>
+        </div>
+        <p>Life lessons with Katie Zaferes</p>
+        <p><strong>From $136</strong>/person</p>
       </div>
-      <p>Life lessons with Katie Zaferes</p>
-      <p><strong>From $136</strong>/person</p>
-    </div>
-    <div className='card'>
-    <img src={wedPic} alt='image' />
-      <div className='rating'>
-        <img src={star} alt='rating-star' />
-        <p>5.0</p>
-        <p>(30) <img src={ellipse} alt='ellipse' /> USA</p>
+      <div className='card'>
+        <img src={wedPic} alt='image' />
+        <div className='rating'>
+          <img src={star} alt='rating-star' />
+          <p>5.0</p>
+          <div className='rating-text'>
+          <p>(30)<img src={ellipse} alt='ellipse' />USA</p>
+          </div>
+        </div>
+        <p>Learn wedding photography</p>
+        <p><strong>From $125</strong>/person</p>
       </div>
-      <p>Learn wedding photography</p>
-      <p><strong>From $125</strong>/person</p>
-    </div>
-    <div className='card'>
-    <img src={bike} alt='image' />
-      <div className='rating'>
-        <img src={star} alt='rating-star' />
-        <p>4.8</p>
-        <p>(2) <img src={ellipse} alt='ellipse' /> USA</p>
+      <div className='card'>
+        <img src={bike} alt='image' />
+        <div className='rating'>
+          <img src={star} alt='rating-star' />
+          <p>4.8</p>
+          <div className='rating-text'>
+            <p>(2)<img src={ellipse} alt='ellipse' />USA</p>
+          </div>
+        </div>
+        <p>Group Mountain Biking</p>
+        <p><strong>From $50</strong>/person</p>
       </div>
-      <p>Group Mountain Biking</p>
-      <p><strong>From $50</strong>/person</p>
-    </div>
     </section>
   )
 }

@@ -12,7 +12,7 @@ body {
 
 /************* Navigation bar ************/
 .nav {
-background-color: transparent;
+background-color: rgba(255, 255, 255, 0.7);
 width: 100%;
 position: fixed;
 box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.1);
@@ -50,13 +50,38 @@ top: 0rem;
 .card {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .card > img {
-  width: 80%;
+  width: 12rem;
+  height: 15rem;
+}
+
+.card > p {
+  font-size: 0.8rem;
+  margin: 0.2rem;
 }
 
 .rating-cards {
-  padding: 0rem 1rem 0rem 1rem;
+  width: 100%;
   display: flex;
+  justify-content: space-between;
+  padding-left: 1rem;
+  align-items: center;
 }
+
+.rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: -0.6rem;
+}
+
+.rating > p {
+  padding-left: 0.1rem;
+}
+
+.rating-text {
+  color: rgba(0, 0, 0, 0.6);
+}
+
