@@ -28,6 +28,8 @@ DWA1 - DWA14 is part one of the course which focuses on structuring Javascript c
 - **DWA12:** Declarative abstractions
 - **DWA13:** Higher order Functions
 - **DWA14:** State machines
+- **DWA15:** Build static info page using React
+- **DWA16:** Build AirBnB experiences site using React
 
 
 

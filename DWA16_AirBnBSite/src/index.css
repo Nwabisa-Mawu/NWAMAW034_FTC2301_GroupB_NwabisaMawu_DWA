@@ -47,10 +47,21 @@ top: 0rem;
 }
 
 /************* Cards ************/
+.card--badge {
+  position: absolute;
+  top: 0.375rem;
+  left: 0.375rem;
+  background-color: white;
+  padding: 0.3125rem 0.4375rem;
+  border-radius: 0.125rem;
+  font-weight: bold;
+}
+
 .card {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 }
 
 .card > img {
@@ -63,12 +74,12 @@ top: 0rem;
   margin: 0.2rem;
 }
 
-.rating-cards {
-  width: 100%;
+.card-order {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 1.25rem;
+  overflow-x: auto;
   padding-left: 1rem;
-  align-items: center;
 }
 
 .rating {
