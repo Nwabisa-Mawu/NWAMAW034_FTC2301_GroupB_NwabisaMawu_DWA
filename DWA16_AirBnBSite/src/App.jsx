@@ -12,8 +12,9 @@ export default function App() {
       /* to remove the error about the props missing a key value */
       key={experience.id}
       /* item is an object inside the props
-      object with the information */
-      item={experience} />
+      object with the information --used spread to make
+      the object we are calling more readable */
+      {...experience} />
   })
   return (
     <div>

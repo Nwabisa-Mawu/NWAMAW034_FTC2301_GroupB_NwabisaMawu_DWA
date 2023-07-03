@@ -6,7 +6,7 @@ import { ReactPropTypes } from 'react';
 /* Images */
 import logo from './assets/airbnb.svg';
 import hero from './assets/photo-grid.png';
-import star from './assets/Star1.png'
+import star from './assets/Star1.png';
 
 
 /**
@@ -45,8 +45,8 @@ export function Hero() {
  * @returns {React component}
  */
 export function Card(props) {
-  const { item: { img, rating, reviewCount,
-    title, price, openSpots, location } } = props
+  const { img, rating, reviewCount,
+    title, price, openSpots, location } = props
   /* create a condition statement to control the text inside the badge */
   let badgeText;
   if (!openSpots) {
