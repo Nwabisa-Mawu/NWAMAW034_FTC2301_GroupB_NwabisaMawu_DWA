@@ -8,7 +8,7 @@ DWA1 - DWA14 is part one of the course which focuses on structuring Javascript c
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=gherkin,lit,redux" />
+    <img src="https://skillicons.dev/icons?i=gherkin,lit,redux,react" />
   </a>
 </p>
 
